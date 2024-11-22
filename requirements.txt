@@ -1,0 +1,4 @@
+nicegui==2.5.0
+PyAutoGUI==0.9.54
+pycups==2.0.4
+reportlab==4.2.5

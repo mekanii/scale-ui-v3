@@ -1,0 +1,12 @@
+[
+    {
+        "date": "2024-09-05",
+        "time": "11:38:30",
+        "part": "PART 01",
+        "std": 23,
+        "unit": "gr",
+        "hysteresis": 1,
+        "measured": 5,
+        "status": "NG"
+    }
+]

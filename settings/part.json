@@ -1,0 +1,26 @@
+[
+  {
+      "id": 1,
+      "name": "PART 01",
+      "std": 163,
+      "hysteresis": 2.5,
+      "unit": "gr",
+      "pack": 5
+  },
+  {
+      "id": 2,
+      "name": "PART 02",
+      "std": 1000,
+      "hysteresis": 1.0,
+      "unit": "gr",
+      "pack": 3
+  },
+  {
+      "id": 3,
+      "name": "PART 03",
+      "std": 1.0,
+      "hysteresis": 0.01,
+      "unit": "kg",
+      "pack": 5
+  }
+]

@@ -1,0 +1,362 @@
+[
+    {
+        "date": "2024-08-20",
+        "time": "11:36:33",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 164,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "11:36:54",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 161,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "11:37:11",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 164,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "12:25:51",
+        "part": "Lighter",
+        "std": 14,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 14,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "12:25:59",
+        "part": "Lighter",
+        "std": 14,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 14,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "15:03:12",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 164,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "15:03:22",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 164,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "15:03:39",
+        "part": "Lighter",
+        "std": 14,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 14,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "15:03:48",
+        "part": "Lighter",
+        "std": 14,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 15,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "15:06:09",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 163,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "15:06:18",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 164,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "15:06:30",
+        "part": "Lighter",
+        "std": 14,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 15,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "15:06:38",
+        "part": "Lighter",
+        "std": 14,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 13,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "15:15:28",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 163,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "15:15:35",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 164,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "15:15:43",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 164,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "15:15:53",
+        "part": "Lighter",
+        "std": 14,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 15,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "15:16:00",
+        "part": "Lighter",
+        "std": 14,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 15,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "22:05:34",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 164,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "22:05:38",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 163,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "22:05:42",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 164,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "22:05:45",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 164,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "22:05:48",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 164,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "22:06:28",
+        "part": "Lighter",
+        "std": 14,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 14,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "22:06:33",
+        "part": "Lighter",
+        "std": 14,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 14,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "22:06:37",
+        "part": "Lighter",
+        "std": 14,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 14,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "22:06:59",
+        "part": "Lighter",
+        "std": 14,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 11,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "22:07:03",
+        "part": "Lighter",
+        "std": 14,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 14,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "22:07:11",
+        "part": "Lighter",
+        "std": 14,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 14,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "22:07:15",
+        "part": "Lighter",
+        "std": 14,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 14,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "22:07:29",
+        "part": "Lighter",
+        "std": 14,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 14,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "22:07:35",
+        "part": "Lighter",
+        "std": 14,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 14,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "22:07:39",
+        "part": "Lighter",
+        "std": 14,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 14,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "22:07:43",
+        "part": "Lighter",
+        "std": 14,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 14,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "22:07:56",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 164,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-20",
+        "time": "22:08:02",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 164,
+        "status": "OK"
+    }
+]

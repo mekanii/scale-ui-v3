@@ -1,0 +1,52 @@
+[
+    {
+        "date": "2024-09-07",
+        "time": "04:59:24",
+        "part": "vivo",
+        "std": 157,
+        "unit": "gr",
+        "hysteresis": 2,
+        "measured": 161,
+        "status": "NG"
+    },
+    {
+        "date": "2024-09-07",
+        "time": "04:59:38",
+        "part": "vivo",
+        "std": 157,
+        "unit": "gr",
+        "hysteresis": 2,
+        "measured": 157,
+        "status": "OK"
+    },
+    {
+        "date": "2024-09-07",
+        "time": "05:03:12",
+        "part": "vivo",
+        "std": 157,
+        "unit": "gr",
+        "hysteresis": 2,
+        "measured": 157,
+        "status": "OK"
+    },
+    {
+        "date": "2024-09-07",
+        "time": "05:15:43",
+        "part": "vivo",
+        "std": 157,
+        "unit": "gr",
+        "hysteresis": 2,
+        "measured": 157,
+        "status": "OK"
+    },
+    {
+        "date": "2024-09-07",
+        "time": "05:20:24",
+        "part": "vivo",
+        "std": 157,
+        "unit": "gr",
+        "hysteresis": 2,
+        "measured": 157,
+        "status": "OK"
+    }
+]

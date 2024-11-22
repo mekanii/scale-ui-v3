@@ -1,0 +1,202 @@
+[
+    {
+        "date": "2024-08-22",
+        "time": "15:50:33",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 163,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-22",
+        "time": "15:50:56",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 164,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-22",
+        "time": "15:53:08",
+        "part": "Lighter",
+        "std": 14,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 12,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-22",
+        "time": "15:54:15",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 163,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-22",
+        "time": "16:04:36",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 165,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-22",
+        "time": "16:04:55",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 165,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-22",
+        "time": "16:05:36",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 164,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-22",
+        "time": "16:05:55",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 164,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-22",
+        "time": "16:06:26",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 164,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-22",
+        "time": "16:06:52",
+        "part": "Lighter",
+        "std": 14,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 14,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-22",
+        "time": "16:07:11",
+        "part": "Lighter",
+        "std": 14,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 14,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-22",
+        "time": "16:07:29",
+        "part": "Lighter",
+        "std": 14,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 14,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-22",
+        "time": "16:08:42",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 163,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-22",
+        "time": "16:10:55",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 165,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-22",
+        "time": "16:11:10",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 165,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-22",
+        "time": "16:11:23",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 165,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-22",
+        "time": "16:11:35",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 165,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-22",
+        "time": "16:11:48",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 165,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-22",
+        "time": "16:11:59",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 165,
+        "status": "OK"
+    },
+    {
+        "date": "2024-08-22",
+        "time": "16:12:10",
+        "part": "vivo y95",
+        "std": 163,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 165,
+        "status": "OK"
+    }
+]
