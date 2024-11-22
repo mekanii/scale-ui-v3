@@ -157,7 +157,7 @@ class calibration:
 
       dialog.close()
 
-  async def handle_display_calibration_log(self, sequence, dialog):
+  async def handle_display_calibration_log(self, sequence):
     if not self.is_calibration_dialog_open: return
     
     if (sequence == 1):
