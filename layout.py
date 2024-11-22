@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 @dataclass
 class Size:
@@ -19,12 +19,12 @@ class Position:
 
 @dataclass
 class Label:
-  part: Position = Position()
-  date: Position = Position()
-  qty: Position = Position()
+  part: Position = field(default_factory=Position)
+  date: Position = field(default_factory=Position)
+  qty: Position = field(default_factory=Position)
 
 @dataclass
 class Layout:
-  size: Size = Size()
-  padding: Padding = Padding()
-  position: Label = Label()
+  size: Size = field(default_factory=Size)
+  padding: Padding = field(default_factory=Padding)
+  position: Label = field(default_factory=Label)
