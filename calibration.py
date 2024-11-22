@@ -130,7 +130,7 @@ class calibration:
 
       with ui.card_actions().props('align="right"').classes('bg-white full-width q-pa-md'):
         ui.button('Cancel', color='grey-7', on_click=lambda: self.close_dialog(dialog)).props('square unelevated')
-        self.button_submit = ui.button('Submit', on_click=lambda: self.create_cal_factor(self.input_known_weight.value)).props('square unelevated').classes('hidden')
+        self.button_submit = ui.button('Submit', on_click=lambda: self.create_cal_factor(self.input_known_weight.value, dialog)).props('square unelevated').classes('hidden')
     
     dialog.open()
 
@@ -143,7 +143,7 @@ class calibration:
     self.is_calibration_dialog_open = False
     component.close()
 
-  async def create_cal_factor(self, known_weight):
+  async def create_cal_factor(self, known_weight, dialog):
     if (self.input_known_weight.validate()):
       rawBytes = self.hx.getRawBytes()
       longValueWithOffset = self.hx.rawBytesToLong(rawBytes)
@@ -155,7 +155,9 @@ class calibration:
       self.button_submit.props(add='disable')
       await self.handle_display_calibration_log(3)
 
-  async def handle_display_calibration_log(self, sequence):
+      dialog.close()
+
+  async def handle_display_calibration_log(self, sequence, dialog):
     if not self.is_calibration_dialog_open: return
     
     if (sequence == 1):
@@ -215,6 +217,10 @@ class calibration:
         await asyncio.sleep(0.5)
         if not self.is_calibration_dialog_open: return
         ui.label(f'New calibration factor has been set to: {self.cal_factor}')
+        
+        await asyncio.sleep(1)
+
+
 
   async def init_calibration(self):
     self.hx.autosetOffset()
