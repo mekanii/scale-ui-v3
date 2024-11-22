@@ -8,7 +8,7 @@ from calibration import calibration
 
 @ui.page('/')
 def default_menu():
-  drawer(0)
+  ui.navigate.to('/scale')
 
 @ui.page('/scale')
 def default_menu():
@@ -79,8 +79,9 @@ def drawer(index):
       ui.label('Calibration').classes('text-h6 q-ml-md')
 
 # app.native.window_args['resizable'] = False
-app.native.start_args['debug'] = True
+app.native.start_args['debug'] = False
 app.native.settings['ALLOW_DOWNLOADS'] = True
+
 ui.run(
   title='ScaleUI v3',
   port=1993,
