@@ -131,6 +131,7 @@ class scale:
         
       # get weight
       self.weight, check = await self.get_weight(self.select_part.value['std'], self.select_part.value['unit'], self.select_part.value['hysteresis'])
+      print(f'weight: {self.weight}, check: {check}')
 
       # if self.select_part.value['unit'] == 'kg':
       #   weight_with_unit = f"{float(format(self.weight, '.2f'))} {self.select_part.value['unit']}"
@@ -195,7 +196,7 @@ class scale:
 
     if not os.path.isfile(log_filename):
       with open(log_filename, 'w') as file:
-          json.dump([], file)
+        json.dump([], file)
 
     log_entry = {
       "date": current_date,
@@ -356,6 +357,8 @@ class scale:
   async def get_weight(self, std, unit, hysteresis):
     rawBytes = self.hx.getRawBytes()
     wt = self.hx.rawBytesToWeight(rawBytes)
+
+    print(f'wt: {wt}')
     
     if (unit == "kg"):
       wt = wt / 1000.0
