@@ -156,7 +156,7 @@ class PrintRoutines:
       log_file.seek(0)
       json.dump(data, log_file, indent=4)
 
-  def update_job_state(self, job_id, new_job_state):
+  def update_job_state(job_id, new_job_state):
     current_date = datetime.now().strftime("%Y-%m-%d")
     log_filename = f"logs/print-job-{current_date}.json"
 

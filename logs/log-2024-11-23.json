@@ -161,16 +161,6 @@
     },
     {
         "date": "2024-11-23",
-        "time": "19:46:54",
-        "part": "Y95",
-        "std": 163.7,
-        "unit": "gr",
-        "hysteresis": 2.5,
-        "measured": 165,
-        "status": "OK"
-    },
-    {
-        "date": "2024-11-23",
         "time": "19:47:36",
         "part": "Y95",
         "std": 163.7,
@@ -178,5 +168,15 @@
         "hysteresis": 2.5,
         "measured": 117,
         "status": "NG"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "19:57:34",
+        "part": "Y95",
+        "std": 163.7,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 165,
+        "status": "OK"
     }
 ]
