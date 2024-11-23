@@ -86,7 +86,7 @@ app.native.settings['ALLOW_DOWNLOADS'] = True
 ui.run(
   title='ScaleUI v3',
   port=1994,
-  native=True,
-  window_size=pyautogui.size(),
-  fullscreen=True,
+  native=False,
+  # window_size=pyautogui.size(),
+  # fullscreen=True,
 )
