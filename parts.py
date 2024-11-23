@@ -83,7 +83,7 @@ class parts:
 
     dialog.open()
 
-  async def open_modal_create(self):
+  def open_modal_create(self):
     with ui.dialog().props('persistent backdrop-filter="invert(70%)"') as dialog, ui.card().classes('bg-primary q-pa-none').style('width: 400px; row-gap: 0;'):
       with ui.card_section().classes('full-width'):
         ui.label('Form Create').classes('text-h5 text-white text-bold')
@@ -106,7 +106,7 @@ class parts:
           ).props('suffix="gr" input-class="text-right"').classes('q-mt-md')
           ui.button(
             'Get Weight',
-            on_click=lambda: await self.get_stable_weight(self.input_std_c)
+            on_click=lambda: self.get_stable_weight(self.input_std_c)
           ).props('unelevated square')
 
           hysteresis = ui.number(
@@ -148,7 +148,7 @@ class parts:
 
     dialog.open()
 
-  async def open_modal_update(self, component, val):
+  def open_modal_update(self, component, val):
     with ui.dialog().props('persistent') as dialog, ui.card().classes('bg-primary q-pa-none').style('width: 400px; row-gap: 0;'):
       with ui.card_section().classes('full-width'):
         ui.label('Form Update').classes('text-h5 text-white text-bold')
@@ -173,7 +173,7 @@ class parts:
 
           ui.button(
             'Get Weight',
-            on_click=lambda: await self.get_stable_weight(self.input_std_u)
+            on_click=lambda: self.get_stable_weight(self.input_std_u)
           ).props('unelevated square')
 
           hysteresis = ui.number(
