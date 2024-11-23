@@ -30,6 +30,7 @@ class scale:
     self.hx.autosetOffset()
 
     self.hx.setReferenceUnit(self.cal_factor)
+    print(self.hx.getReferenceUnit())
 
     self.last_part = None
     self.part_options = []
@@ -181,7 +182,7 @@ class scale:
       self.last_check = check
       self.label_weight.set_text(f"{float(format(self.weight, '.2f')) if self.select_part.value['unit'] == 'kg' else int(self.weight)} {self.select_part.value['unit']}")
     
-    await asyncio.sleep(0.05)
+    await asyncio.sleep(1)
     # print('updating')
     await self.update_scale()
 
@@ -358,7 +359,7 @@ class scale:
     rawBytes = self.hx.getRawBytes()
     wt = self.hx.rawBytesToWeight(rawBytes)
 
-    print(f'wt: {wt}')
+    print(f'raw: {rawBytes}, wt: {wt}')
     
     if (unit == "kg"):
       wt = wt / 1000.0

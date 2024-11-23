@@ -149,6 +149,7 @@ class calibration:
       longValueWithOffset = self.hx.rawBytesToLong(rawBytes)
       referenceUnit = longValueWithOffset / known_weight
       self.hx.setReferenceUnit(referenceUnit)
+      print(f'raw: {rawBytes}, long: {longValueWithOffset}')
 
       self.set_cal_factor(referenceUnit)
 
