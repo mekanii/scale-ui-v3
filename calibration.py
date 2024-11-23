@@ -5,7 +5,7 @@ import json
 import os
 import asyncio
 import csv
-from hx711v0_5_1 import HX711
+from hx711 import HX711
 
 class ErrorChecker:
     def __init__(self, *elements: ValidationElement) -> None:
@@ -18,6 +18,7 @@ class ErrorChecker:
 class calibration:
   def __init__(self):
     self.hx = HX711(5, 6)
+    self.hx.set_reading_format("MSB", "MSB")
 
     self.cal_factor = 0
     self.is_calibration_dialog_open = False
@@ -145,13 +146,22 @@ class calibration:
 
   async def create_cal_factor(self, known_weight, dialog):
     if (self.input_known_weight.validate()):
-      rawBytes = self.hx.getRawBytes()
-      longValueWithOffset = self.hx.rawBytesToLong(rawBytes)
-      referenceUnit = longValueWithOffset / known_weight
-      self.hx.setReferenceUnit(referenceUnit)
-      print(f'raw: {rawBytes}, long: {longValueWithOffset}')
+      # rawBytes = self.hx.getRawBytes()
+      # longValueWithOffset = self.hx.rawBytesToLong(rawBytes)
+      # referenceUnit = longValueWithOffset / known_weight
+      # self.hx.setReferenceUnit(referenceUnit)
+      val = self.hx.get_weight()
+      self.hx.power_down()
+      self.hx.power_up()
+      
+      await asyncio.sleep(0.1)
+      
+      reference_unit = val / known_weight
+      self.hx.set_reference_unit(reference_unit)
 
-      self.set_cal_factor(referenceUnit)
+      print(f'val: {val}')
+
+      self.set_cal_factor(reference_unit)
 
       self.button_submit.props(add='disable')
       await self.handle_display_calibration_log(3)
@@ -224,5 +234,9 @@ class calibration:
 
 
   async def init_calibration(self):
-    self.hx.autosetOffset()
-    self.hx.setReferenceUnit(1)
+    self.hx.set_reference_unit(1)
+    self.hx.reset()
+    self.hx.tare()
+
+    # self.hx.autosetOffset()
+    # self.hx.setReferenceUnit(1)
