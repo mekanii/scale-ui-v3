@@ -188,5 +188,185 @@
         "hysteresis": 2.5,
         "measured": 272,
         "status": "NG"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "22:02:23",
+        "part": "Y95",
+        "std": 163.45,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 141,
+        "status": "NG"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "22:02:36",
+        "part": "Y95",
+        "std": 163.45,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 189,
+        "status": "NG"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "22:02:55",
+        "part": "Y95",
+        "std": 163.45,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 187,
+        "status": "NG"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "22:03:28",
+        "part": "Y95",
+        "std": 163.45,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 164,
+        "status": "OK"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "22:13:00",
+        "part": "Y95",
+        "std": 163.45,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 165,
+        "status": "OK"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "22:16:36",
+        "part": "Y95",
+        "std": 163.45,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 71,
+        "status": "NG"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "22:16:53",
+        "part": "Y95",
+        "std": 163.45,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 164,
+        "status": "OK"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "22:18:59",
+        "part": "Y95",
+        "std": 163.45,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 22,
+        "status": "NG"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "22:19:00",
+        "part": "Y95",
+        "std": 163.45,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 21,
+        "status": "NG"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "22:19:10",
+        "part": "Y95",
+        "std": 163.45,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 93,
+        "status": "NG"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "22:19:17",
+        "part": "Y95",
+        "std": 163.45,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 70,
+        "status": "NG"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "22:19:21",
+        "part": "Y95",
+        "std": 163.45,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 33,
+        "status": "NG"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "22:19:40",
+        "part": "Y95",
+        "std": 163.45,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 166,
+        "status": "NG"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "22:20:05",
+        "part": "Y95",
+        "std": 163.45,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 166,
+        "status": "NG"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "22:20:24",
+        "part": "Y95",
+        "std": 163.45,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 165,
+        "status": "OK"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "22:24:51",
+        "part": "Y95",
+        "std": 163.45,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 165,
+        "status": "OK"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "22:25:10",
+        "part": "Y95",
+        "std": 163.45,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 271,
+        "status": "NG"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "22:25:29",
+        "part": "Y95",
+        "std": 163.45,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 163,
+        "status": "OK"
     }
 ]

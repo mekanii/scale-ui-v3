@@ -20,5 +20,16 @@
         "jobid": 2,
         "qty": 5,
         "state": 9
+    },
+    {
+        "date": "2024-11-23",
+        "time": "22:24:51",
+        "part": "Y95",
+        "std": 163.45,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "jobid": 3,
+        "qty": 5,
+        "state": 9
     }
 ]

@@ -26,7 +26,7 @@
     {
         "id": 4,
         "name": "Y95",
-        "std": 163.7,
+        "std": 163.45,
         "hysteresis": 2.5,
         "unit": "gr",
         "pack": 5
