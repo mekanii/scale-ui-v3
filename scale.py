@@ -2,6 +2,8 @@ from nicegui import ui
 from datetime import date
 import sys
 import json
+import os
+import asyncio
 from hx711v0_5_1 import HX711
 
 class scale:
@@ -11,14 +13,19 @@ class scale:
     READ_MODE = READ_MODE_INTERRUPT_BASED
 
     if len(sys.argv) > 1 and sys.argv[1] == READ_MODE_POLLING_BASED:
-        READ_MODE = READ_MODE_POLLING_BASED
-        print("[INFO] Read mode is 'polling based'.")
+      READ_MODE = READ_MODE_POLLING_BASED
+      print("[INFO] Read mode is 'polling based'.")
     else:
-        print("[INFO] Read mode is 'interrupt based'.")
+      print("[INFO] Read mode is 'interrupt based'.")
+
+    self.cal_factor = 1
+    self.get_cal_factor()
 
     self.hx = HX711(5, 6)
+    self.hx.setReadingFormat("MSB", "MSB")
+    self.hx.autosetOffset()
 
-    print(self.hx.getReferenceUnit())
+    self.hx.setReferenceUnit(self.cal_factor)
 
     self.part_options = []
     self.part_count = 0
@@ -85,3 +92,17 @@ class scale:
     self.label_count_ok.set_text(f'{self.count_ok} OK')
     self.label_count_ng.set_text(f'{self.count_ng} NG')
     self.label_weight.set_text(f'{self.weight} {self.select_part.value["unit"]}')
+
+  def get_cal_factor(self):
+    calibration_file_path = os.path.join("settings", 'calibration.json')
+    
+    if not os.path.isfile(calibration_file_path):
+      ui.notify(
+        f'Path {calibration_file_path} does not exist.',
+        type='negative'
+      )
+      return
+    
+    with open(calibration_file_path, 'r') as file:
+      data = json.load(file)
+      self.cal_factor = data['cal_factor']
