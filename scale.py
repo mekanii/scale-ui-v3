@@ -11,7 +11,7 @@ from hx711v0_5_1 import HX711
 from print_routines import PrintRoutines
 
 class scale:
-  async def __init__(self):
+  def __init__(self):
     READ_MODE_INTERRUPT_BASED = "--interrupt-based"
     READ_MODE_POLLING_BASED = "--polling-based"
     READ_MODE = READ_MODE_INTERRUPT_BASED
@@ -91,7 +91,7 @@ class scale:
 
         self.audio = ui.audio(controls=False)
     
-    await self.update_scale()
+    self.update_scale()
 
   def get_parts(self):
     with open('settings/part.json', 'r') as file:
