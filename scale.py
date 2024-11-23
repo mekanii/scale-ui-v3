@@ -7,30 +7,33 @@ import asyncio
 import threading
 import queue
 import cups
-from hx711v0_5_1 import HX711
+from hx711 import HX711
 from print_routines import PrintRoutines
 
 class scale:
   def __init__(self):
-    READ_MODE_INTERRUPT_BASED = "--interrupt-based"
-    READ_MODE_POLLING_BASED = "--polling-based"
-    READ_MODE = READ_MODE_POLLING_BASED
+    # READ_MODE_INTERRUPT_BASED = "--interrupt-based"
+    # READ_MODE_POLLING_BASED = "--polling-based"
+    # READ_MODE = READ_MODE_POLLING_BASED
 
-    if len(sys.argv) > 1 and sys.argv[1] == READ_MODE_POLLING_BASED:
-      READ_MODE = READ_MODE_POLLING_BASED
-      print("[INFO] Read mode is 'polling based'.")
-    else:
-      print("[INFO] Read mode is 'interrupt based'.")
+    # if len(sys.argv) > 1 and sys.argv[1] == READ_MODE_POLLING_BASED:
+    #   READ_MODE = READ_MODE_POLLING_BASED
+    #   print("[INFO] Read mode is 'polling based'.")
+    # else:
+    #   print("[INFO] Read mode is 'interrupt based'.")
 
     self.cal_factor = 1
     self.get_cal_factor()
 
     self.hx = HX711(5, 6)
-    self.hx.setReadingFormat("MSB", "MSB")
-    self.hx.autosetOffset()
+    self.hx.set_reading_format("MSB", "MSB")
 
-    self.hx.setReferenceUnit(self.cal_factor)
-    print(self.hx.getReferenceUnit())
+    self.hx.set_reference_unit(self.cal_factor)
+
+    self.hx.reset()
+
+    self.hx.tare()
+    # print(self.hx.get_reference_unit())
 
     self.last_part = None
     self.part_options = []
@@ -54,6 +57,7 @@ class scale:
     self.label_count_pack = None
     self.label_count_ok = None
     self.label_count_ng = None
+    self.label_check = None
     self.audio = None
 
     self.select_part = None
@@ -89,6 +93,8 @@ class scale:
     with ui.row().classes('full-width'):
       with ui.column(align_items='stretch').classes('col-12 q-pr-lg').style('row-gap: 0'):
         self.label_weight = ui.label('').classes('text-right').style('font-family: "monofonto"; font-size: 128px')
+        
+        self.label_check = ui.label('').classes('text-right text-h2').style('font-family: "monofonto";')
 
         self.audio = ui.audio('', controls=False)
     
@@ -140,6 +146,7 @@ class scale:
       #   weight_with_unit = f"{int(self.weight)} {self.select_part.value['unit']}"
 
       if check == 1 and check != self.last_check:
+        self.label_check.set_text('QTY GOOD')
         self.play_tone("OK")
         # self.check_label.config(foreground='green')
         # self.check_label.config(text="QTY GOOD")
@@ -165,6 +172,7 @@ class scale:
         # self.label_count_ng.set_text(f'{self.count_ng} NG')
 
       elif check == 2 and check != self.last_check:
+        self.label_check.set_text('NOT GOOD')
         self.play_tone("NG")
         # self.check_label.config(foreground='red')
         # self.check_label.config(text="NOT GOOD")
@@ -176,13 +184,13 @@ class scale:
         # self.label_count_ok.set_text(f'{self.count_ok} OK')
         self.label_count_ng.set_text(f'{self.count_ng} NG')
 
-      # elif check == 0 and check != self.last_check:
-        # self.check_label.config(text="")
+      elif check == 0 and check != self.last_check:
+        self.label_check.set_text('')
       
       self.last_check = check
       self.label_weight.set_text(f"{float(format(self.weight, '.2f')) if self.select_part.value['unit'] == 'kg' else int(self.weight)} {self.select_part.value['unit']}")
     
-    await asyncio.sleep(1)
+    await asyncio.sleep(0.1)
     # print('updating')
     await self.update_scale()
 
@@ -356,10 +364,14 @@ class scale:
     self.audio.play()
 
   async def get_weight(self, std, unit, hysteresis):
-    rawBytes = self.hx.getRawBytes()
-    wt = self.hx.rawBytesToWeight(rawBytes)
+    # rawBytes = self.hx.getRawBytes()
+    # wt = self.hx.rawBytesToWeight(rawBytes)
 
-    print(f'raw: {rawBytes}, wt: {wt}')
+    wt = self.hx.get_weight(5)
+    self.hx.power_down()
+    self.hx.power_up()
+
+    print(f'wt: {wt}')
     
     if (unit == "kg"):
       wt = wt / 1000.0
