@@ -150,7 +150,7 @@ class scale:
         #   weight_with_unit = f"{int(self.weight)} {self.select_part.value['unit']}"
 
         if check == 1 and check != self.last_check:
-          self.label_check.classes(replace='text-positives')
+          self.label_check.classes('text-right text-h2 text-positive')
           self.label_check.set_text('QTY GOOD')
           await self.play_tone("OK")
           # self.check_label.config(foreground='green')
@@ -177,7 +177,7 @@ class scale:
           # self.label_count_ng.set_text(f'{self.count_ng} NG')
 
         elif check == 2 and check != self.last_check:
-          self.label_check.classes(replace='text-negative')
+          self.label_check.classes('text-right text-h2 text-negative')
           self.label_check.set_text('NOT GOOD')
           await self.play_tone("NG")
           # self.check_label.config(foreground='red')
