@@ -274,7 +274,7 @@ class scale:
     with open(print_job_file_path, 'r') as file:
       data = json.load(file)
       for entry in data:
-        if entry['part'] == part_name:
+        if entry['part'] == part['name'] and entry['std'] == part['std'] and entry['hysteresis'] == part['hysteresis']:
           qty = entry.get('qty', 0)
           total_qty += qty
           print(total_qty)
