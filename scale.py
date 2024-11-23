@@ -130,7 +130,7 @@ class scale:
           count, self.count_ok, self.count_ng = self.count_log_data(self.select_part.value['name'])
 
           if (self.select_part.value['pack'] > 0):
-            self.count_pack = self.sum_qty_by_part(self.select_part.value['name'])
+            self.count_pack = self.sum_qty_by_part(self.select_part.value)
             self.count_ok_session = (self.count_ok - self.count_pack) % self.select_part.value['pack']
           else:
             self.count_ok_session = self.count_ok
@@ -150,7 +150,7 @@ class scale:
         #   weight_with_unit = f"{int(self.weight)} {self.select_part.value['unit']}"
 
         if check == 1 and check != self.last_check:
-          self.label_check.classes('text-right text-h2 text-positive')
+          self.label_check.classes(remove='text-negative', add='text-positive')
           self.label_check.set_text('QTY GOOD')
           await self.play_tone("OK")
           # self.check_label.config(foreground='green')
@@ -160,7 +160,7 @@ class scale:
           count, self.count_ok, self.count_ng = self.count_log_data(self.select_part.value['name'])
           
           if (self.select_part.value['pack'] > 0):
-            self.count_pack = self.sum_qty_by_part(self.select_part.value['name'])
+            self.count_pack = self.sum_qty_by_part(self.select_part.value)
             self.count_ok_session = (self.count_ok - self.count_pack) % self.select_part.value['pack']
             if self.count_ok_session == 0:
               result_queue = queue.Queue()
@@ -177,7 +177,7 @@ class scale:
           # self.label_count_ng.set_text(f'{self.count_ng} NG')
 
         elif check == 2 and check != self.last_check:
-          self.label_check.classes('text-right text-h2 text-negative')
+          self.label_check.classes(remove='text-positive', add='text-negative')
           self.label_check.set_text('NOT GOOD')
           await self.play_tone("NG")
           # self.check_label.config(foreground='red')
@@ -254,11 +254,11 @@ class scale:
 
     return count, count_ok, count_ng
   
-  def sum_qty_by_part(self, part_name):
+  def sum_qty_by_part(self, part):
     # Get the current date in the format yyyy-mm-dd
     current_date = datetime.now().strftime("%Y-%m-%d")
     
-    print_job_file_path = os.path.join('logs', f'logs/print-job-{current_date}.json')
+    print_job_file_path = os.path.join('logs', f'print-job-{current_date}.json')
 
     if not os.path.isfile(print_job_file_path):
       # ui.notify(
@@ -277,6 +277,7 @@ class scale:
         if entry['part'] == part_name:
           qty = entry.get('qty', 0)
           total_qty += qty
+          print(total_qty)
 
     return total_qty
   
