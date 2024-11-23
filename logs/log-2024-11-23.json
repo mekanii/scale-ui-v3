@@ -1,0 +1,182 @@
+[
+    {
+        "date": "2024-11-23",
+        "time": "18:00:47",
+        "part": "Y95",
+        "std": 163.7,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 164,
+        "status": "OK"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "18:06:48",
+        "part": "Y95",
+        "std": 163.7,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 169,
+        "status": "NG"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "18:07:01",
+        "part": "Y95",
+        "std": 163.7,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 169,
+        "status": "NG"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "18:07:17",
+        "part": "Y95",
+        "std": 163.7,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 128,
+        "status": "NG"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "18:13:45",
+        "part": "Y95",
+        "std": 163.7,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 167,
+        "status": "NG"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "18:17:29",
+        "part": "Y95",
+        "std": 163.7,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 165,
+        "status": "OK"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "18:25:13",
+        "part": "Y95",
+        "std": 163.7,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 164,
+        "status": "OK"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "18:32:45",
+        "part": "Y95",
+        "std": 163.7,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 268,
+        "status": "NG"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "18:42:57",
+        "part": "Y95",
+        "std": 163.7,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 273,
+        "status": "NG"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "19:01:57",
+        "part": "Y95",
+        "std": 163.7,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 272,
+        "status": "NG"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "19:45:20",
+        "part": "Y95",
+        "std": 163.7,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 86,
+        "status": "NG"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "19:45:37",
+        "part": "Y95",
+        "std": 163.7,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 72,
+        "status": "NG"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "19:45:40",
+        "part": "Y95",
+        "std": 163.7,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 26,
+        "status": "NG"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "19:45:53",
+        "part": "Y95",
+        "std": 163.7,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 117,
+        "status": "NG"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "19:46:05",
+        "part": "Y95",
+        "std": 163.7,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 115,
+        "status": "NG"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "19:46:34",
+        "part": "Y95",
+        "std": 163.7,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 165,
+        "status": "OK"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "19:46:54",
+        "part": "Y95",
+        "std": 163.7,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 165,
+        "status": "OK"
+    },
+    {
+        "date": "2024-11-23",
+        "time": "19:47:36",
+        "part": "Y95",
+        "std": 163.7,
+        "unit": "gr",
+        "hysteresis": 2.5,
+        "measured": 117,
+        "status": "NG"
+    }
+]

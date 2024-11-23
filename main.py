@@ -14,6 +14,7 @@ def default_menu():
 def default_menu():
   drawer(1)
   app.add_static_files('/assets/fonts', 'assets/fonts')
+  app.add_static_files('/assets/tones', 'assets/tones')
   ui.add_head_html(r'''
   <style>
   @font-face{
@@ -84,7 +85,7 @@ app.native.settings['ALLOW_DOWNLOADS'] = True
 
 ui.run(
   title='ScaleUI v3',
-  port=1993,
+  port=1994,
   native=True,
   window_size=pyautogui.size(),
   fullscreen=True,

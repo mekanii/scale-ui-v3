@@ -150,7 +150,7 @@ class calibration:
       # longValueWithOffset = self.hx.rawBytesToLong(rawBytes)
       # referenceUnit = longValueWithOffset / known_weight
       # self.hx.setReferenceUnit(referenceUnit)
-      val = self.hx.get_weight()
+      val = self.hx.get_weight(15)
       self.hx.power_down()
       self.hx.power_up()
       
