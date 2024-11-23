@@ -14,7 +14,7 @@ class scale:
   def __init__(self):
     READ_MODE_INTERRUPT_BASED = "--interrupt-based"
     READ_MODE_POLLING_BASED = "--polling-based"
-    READ_MODE = READ_MODE_INTERRUPT_BASED
+    READ_MODE = READ_MODE_POLLING_BASED
 
     if len(sys.argv) > 1 and sys.argv[1] == READ_MODE_POLLING_BASED:
       READ_MODE = READ_MODE_POLLING_BASED
@@ -89,7 +89,7 @@ class scale:
       with ui.column(align_items='stretch').classes('col-12 q-pr-lg').style('row-gap: 0'):
         self.label_weight = ui.label('').classes('text-right').style('font-family: "monofonto"; font-size: 128px')
 
-        self.audio = ui.audio(controls=False)
+        self.audio = ui.audio('', controls=False)
     
     self.update_scale()
 
@@ -112,7 +112,7 @@ class scale:
 
 
   async def update_scale(self):
-    if (self.select_part.value is not None and self.select_part.value != ''):
+    if (self.select_part.value is not None):
       if (self.select_part.value['name'] != self.last_part):
         self.last_part = self.select_part.value
         count, self.count_ok, self.count_ng = self.count_log_data(self.select_part.value['name'])
