@@ -4,6 +4,7 @@ from datetime import date, datetime
 import json
 import os
 import csv
+from hx711 import HX711
 
 class ErrorChecker:
     def __init__(self, *elements: ValidationElement) -> None:
@@ -15,6 +16,21 @@ class ErrorChecker:
 
 class parts:
   def __init__(self):
+    self.stable_readings_count = 0
+    self.stable_readings_reaquired = 32
+
+    self.cal_factor = 1
+    self.get_cal_factor()
+
+    self.hx = HX711(5, 6)
+    self.hx.set_reading_format("MSB", "MSB")
+
+    self.hx.set_reference_unit(self.cal_factor)
+
+    self.hx.reset()
+
+    self.hx.tare()
+
     self.rows = []
     self.columns = [
       {'name': 'name', 'label': 'Part', 'field': 'name', 'required': True, 'align': 'left'},
@@ -26,6 +42,7 @@ class parts:
 
     self.table_parts = None
     self.input_filter = None
+    self.input_std_u = None
 
     self.get_parts()
     
@@ -66,7 +83,7 @@ class parts:
 
     dialog.open()
 
-  def open_modal_create(self):
+  async def open_modal_create(self):
     with ui.dialog().props('persistent backdrop-filter="invert(70%)"') as dialog, ui.card().classes('bg-primary q-pa-none').style('width: 400px; row-gap: 0;'):
       with ui.card_section().classes('full-width'):
         ui.label('Form Create').classes('text-h5 text-white text-bold')
@@ -79,7 +96,7 @@ class parts:
             }
           )
           
-          std = ui.number(
+          self.input_std_c = ui.number(
             'Standard Weight',
             value=0,
             validation={
@@ -87,7 +104,10 @@ class parts:
               'This field must be more than 0': lambda value: value > 0,
             }
           ).props('suffix="gr" input-class="text-right"').classes('q-mt-md')
-          ui.button('Get Weight').props('unelevated square')
+          ui.button(
+            'Get Weight',
+            on_click=lambda: await self.get_stable_weight(self.input_std_c)
+          ).props('unelevated square')
 
           hysteresis = ui.number(
             'Tolerance',
@@ -99,7 +119,7 @@ class parts:
           ).props('suffix="gr" input-class="text-right"').classes('q-mt-md')
           
           ui.label('Unit').classes('text-caption text-weight-light').classes('q-mt-md')
-          unit = ui.toggle(['gr', 'kg'], value='gr', on_change=lambda e: self.change_input_suffix(e.value, std, hysteresis)).props('spread no-caps square unelevated').style('border: 1px solid #6796cf;')
+          unit = ui.toggle(['gr', 'kg'], value='gr', on_change=lambda e: self.change_input_suffix(e.value, self.input_std_c, hysteresis)).props('spread no-caps square unelevated').style('border: 1px solid #6796cf;')
           
           pack = ui.number(
             'Pack',
@@ -119,16 +139,16 @@ class parts:
           on_click=lambda: self.create_part(
             dialog,
             name.value,
-            std.value,
+            self.input_std_c.value,
             hysteresis.value,
             unit.value,
             pack.value
           )
-        ).props('square unelevated').bind_enabled_from(ErrorChecker(name, std, hysteresis, pack), 'no_errors')
+        ).props('square unelevated').bind_enabled_from(ErrorChecker(name, self.input_std_c, hysteresis, pack), 'no_errors')
 
     dialog.open()
 
-  def open_modal_update(self, component, val):
+  async def open_modal_update(self, component, val):
     with ui.dialog().props('persistent') as dialog, ui.card().classes('bg-primary q-pa-none').style('width: 400px; row-gap: 0;'):
       with ui.card_section().classes('full-width'):
         ui.label('Form Update').classes('text-h5 text-white text-bold')
@@ -142,7 +162,7 @@ class parts:
             }
           )
           
-          std = ui.number(
+          self.input_std_u = ui.number(
             'Standard Weight',
             value=val['std'] if val['unit'] == 'gr' else val['std'] * 1000,
             validation={
@@ -150,7 +170,11 @@ class parts:
               'This field must be more than 0': lambda value: value > 0,
             }
           ).props('suffix="gr" input-class="text-right"').classes('q-mt-md')
-          ui.button('Get Weight').props('unelevated square')
+
+          ui.button(
+            'Get Weight',
+            on_click=lambda: await self.get_stable_weight(self.input_std_u)
+          ).props('unelevated square')
 
           hysteresis = ui.number(
             'Tolerance',
@@ -162,7 +186,7 @@ class parts:
           ).props('suffix="gr" input-class="text-right"' if val["unit"] == "gr" else 'suffix="kg" input-class="text-right"').classes('q-mt-md')
           
           ui.label('Unit').classes('text-caption text-weight-light').classes('q-mt-md')
-          unit = ui.toggle(['gr', 'kg'], value=val['unit'], on_change=lambda e: self.change_input_suffix(e.value, std, hysteresis)).props('spread no-caps square unelevated').style('border: 1px solid #6796cf;')
+          unit = ui.toggle(['gr', 'kg'], value=val['unit'], on_change=lambda e: self.change_input_suffix(e.value, self.input_std_u, hysteresis)).props('spread no-caps square unelevated').style('border: 1px solid #6796cf;')
           
           pack = ui.number(
             'Pack',
@@ -181,12 +205,12 @@ class parts:
             component,
             val['id'],
             name.value,
-            std.value,
+            self.input_std_u.value,
             hysteresis.value,
             unit.value,
             pack.value
           )
-        ).props('square unelevated').bind_enabled_from(ErrorChecker(name, std, hysteresis, pack), 'no_errors')
+        ).props('square unelevated').bind_enabled_from(ErrorChecker(name, self.input_std_u, hysteresis, pack), 'no_errors')
 
     dialog.open()
 
@@ -367,3 +391,44 @@ class parts:
       )
 
     component.close()
+
+  def get_cal_factor(self):
+    calibration_file_path = os.path.join("settings", 'calibration.json')
+    
+    if not os.path.isfile(calibration_file_path):
+      ui.notify(
+        f'Path {calibration_file_path} does not exist.',
+        type='negative'
+      )
+      return
+    
+    with open(calibration_file_path, 'r') as file:
+      data = json.load(file)
+      self.cal_factor = data['cal_factor']
+      
+  async def get_stable_weight(self, component):
+    stable = False
+    while (not stable):
+      new_wt = self.hx.get_weight(15)
+      if (self.check_stable_state(new_wt, 0, "gr")):
+        if (new_wt > 2.0):
+          data = new_wt
+          stable = True
+
+    component.set_value(data)
+    
+  async def check_stable_state(self, wt, std, unit):
+    # diff = std  / ((9600 * 20 / 200) / RS485_BAUD);
+    diff = 0.0
+
+    if (unit == "kg"):
+      diff = float(std) * 0.1
+    else:
+      diff = 1.0 if (std == 0) else float(std) * 0.1
+
+    if (wt >= wt - diff and wt <= wt + diff and abs(wt - self.last_weight) <= diff):
+      self.stable_readings_count = self.stable_readings_count + 1 if (self.last_weight > diff) else 0
+    
+    self.last_weight = wt
+      
+    return (self.stable_readings_count >= self.stable_readings_reaquired)
