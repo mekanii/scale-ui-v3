@@ -159,7 +159,7 @@ class calibration:
       reference_unit = val / known_weight
       self.hx.set_reference_unit(reference_unit)
 
-      print(f'val: {val}')
+      # print(f'val: {val}')
 
       self.set_cal_factor(reference_unit)
 
@@ -193,7 +193,7 @@ class calibration:
           await asyncio.sleep(0.5)
           if not self.is_calibration_dialog_open: break
 
-        # await self.init_calibration()
+        await self.init_calibration()
 
     if (sequence == 2):
       with self.display_calibration_log:
