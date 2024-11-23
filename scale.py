@@ -1,9 +1,25 @@
 from nicegui import ui
 from datetime import date
+import sys
 import json
+from hx711v0_5_1 import HX711
 
 class scale:
   def __init__(self):
+    READ_MODE_INTERRUPT_BASED = "--interrupt-based"
+    READ_MODE_POLLING_BASED = "--polling-based"
+    READ_MODE = READ_MODE_INTERRUPT_BASED
+
+    if len(sys.argv) > 1 and sys.argv[1] == READ_MODE_POLLING_BASED:
+        READ_MODE = READ_MODE_POLLING_BASED
+        print("[INFO] Read mode is 'polling based'.")
+    else:
+        print("[INFO] Read mode is 'interrupt based'.")
+
+    self.hx = HX711(5, 6)
+
+    print(self.hx.getReferenceUnit())
+
     self.part_options = []
     self.part_count = 0
     self.weight = 0
@@ -60,7 +76,7 @@ class scale:
     self.label_part_count.set_text(f'Found {self.part_count} parts')
 
   def tare(self):
-    print('')
+    self.hx.tare()
 
   def select_part_on_change(self):
     # self.label_selected_part_key.set_text('Standard Weight ± Tolerance')

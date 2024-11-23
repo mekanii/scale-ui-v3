@@ -111,15 +111,15 @@ def tare():
 
 
 
-# referenceUnit = 114
-# print(f"[INFO] Setting the 'referenceUnit' at {referenceUnit}.")
-# hx.setReferenceUnit(referenceUnit)
-# print(f"[INFO] Finished setting the 'referenceUnit' at {referenceUnit}.")
+referenceUnit = 114
+print(f"[INFO] Setting the 'referenceUnit' at {referenceUnit}.")
+hx.setReferenceUnit(referenceUnit)
+print(f"[INFO] Finished setting the 'referenceUnit' at {referenceUnit}.")
 
-# if READ_MODE == READ_MODE_INTERRUPT_BASED:
-#   print("[INFO] Enabling the callback.")
-#   hx.enableReadyCallback(printAll)
-#   print("[INFO] Finished enabling the callback.")
+if READ_MODE == READ_MODE_INTERRUPT_BASED:
+  print("[INFO] Enabling the callback.")
+  hx.enableReadyCallback(printAll)
+  print("[INFO] Finished enabling the callback.")
 
 
 # while True:
