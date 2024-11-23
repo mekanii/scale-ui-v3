@@ -106,8 +106,9 @@ class scale:
   def tare(self):
     self.hx.tare()
 
-  def select_part_on_change(self):
+  async def select_part_on_change(self):
     # self.label_selected_part_key.set_text('Standard Weight ± Tolerance')
+    # await self.update_scale()
     print('')
 
 
@@ -138,8 +139,8 @@ class scale:
 
         if check == 1 and check != self.last_check:
           self.play_tone("OK")
-          self.check_label.config(foreground='green')
-          self.check_label.config(text="QTY GOOD")
+          # self.check_label.config(foreground='green')
+          # self.check_label.config(text="QTY GOOD")
 
           self.log_data(self.select_part.value, float(format(self.weight, '.2f')) if self.select_part.value['unit'] == 'kg' else int(self.weight), "OK")
           count, self.count_ok, self.count_ng = self.count_log_data(self.select_part.value['name'])
@@ -163,8 +164,8 @@ class scale:
 
       elif check == 2 and check != self.last_check:
         self.play_tone("NG")
-        self.check_label.config(foreground='red')
-        self.check_label.config(text="NOT GOOD")
+        # self.check_label.config(foreground='red')
+        # self.check_label.config(text="NOT GOOD")
 
         self.log_data(self.select_part.value, float(format(self.weight, '.2f')) if self.select_part.value['unit'] == 'kg' else int(self.weight), "NG")
         self.count, self.count_ok, self.count_ng = self.count_log_data(self.select_part.value['name'])
@@ -173,13 +174,14 @@ class scale:
         # self.label_count_ok.set_text(f'{self.count_ok} OK')
         self.label_count_ng.set_text(f'{self.count_ng} NG')
 
-      elif check == 0 and check != self.last_check:
-        self.check_label.config(text="")
+      # elif check == 0 and check != self.last_check:
+        # self.check_label.config(text="")
       
       self.last_check = check
       self.label_weight.set_text(f"{float(format(self.weight, '.2f')) if self.select_part.value['unit'] == 'kg' else int(self.weight)} {self.select_part.value['unit']}")
     
     await asyncio.sleep(0.05)
+    print('updating')
     await self.update_scale()
 
   def log_data(self, part, scale, status):
