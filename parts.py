@@ -4,6 +4,7 @@ from datetime import date, datetime
 import json
 import os
 import csv
+import asyncio
 from hx711 import HX711
 
 class ErrorChecker:
@@ -293,7 +294,7 @@ class parts:
       new_data = {
           "id": new_id,
           "name": name,
-          "std": float(std),
+          "std": float(format(std, '.2f')),
           "hysteresis": float(hysteresis),
           "unit": unit,
           "pack": int(pack)
@@ -329,7 +330,7 @@ class parts:
       for part in data:
         if part['id'] == id:
           part['name'] = name
-          part['std'] = float(std) if unit == 'gr' else float(std) / 1000
+          part['std'] = float(format(std, '.2f')) if unit == 'gr' else float(format(std / 1000, '.2f')) 
           part['hysteresis'] = float(hysteresis)
           part['unit'] = unit
           part['pack'] = int(pack)
@@ -410,6 +411,9 @@ class parts:
     stable = False
     while (not stable):
       new_wt = self.hx.get_weight(15)
+      self.hx.power_down()
+      self.hx.power_up()
+      await asyncio.sleep(0.1)
       if (self.check_stable_state(new_wt, 0, "gr")):
         if (new_wt > 2.0):
           data = new_wt
