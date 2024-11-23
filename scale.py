@@ -91,7 +91,6 @@ class scale:
 
         self.audio = ui.audio('', controls=False)
     
-    self.update_scale()
 
   def get_parts(self):
     with open('settings/part.json', 'r') as file:
@@ -109,7 +108,8 @@ class scale:
   async def select_part_on_change(self):
     # self.label_selected_part_key.set_text('Standard Weight ± Tolerance')
     # await self.update_scale()
-    print('')
+    if (self.last_part is None):
+      await self.update_scale()
 
 
   async def update_scale(self):
@@ -129,38 +129,38 @@ class scale:
         self.label_count_ok.set_text(f'{self.count_ok} OK')
         self.label_count_ng.set_text(f'{self.count_ng} NG')
         
-        # get weight
-        self.weight, check = await self.get_weight(self.select_part.value['std'], self.select_part.value['unit'], self.select_part.value['hysteresis'])
+      # get weight
+      self.weight, check = await self.get_weight(self.select_part.value['std'], self.select_part.value['unit'], self.select_part.value['hysteresis'])
 
-        # if self.select_part.value['unit'] == 'kg':
-        #   weight_with_unit = f"{float(format(self.weight, '.2f'))} {self.select_part.value['unit']}"
-        # else:
-        #   weight_with_unit = f"{int(self.weight)} {self.select_part.value['unit']}"
+      # if self.select_part.value['unit'] == 'kg':
+      #   weight_with_unit = f"{float(format(self.weight, '.2f'))} {self.select_part.value['unit']}"
+      # else:
+      #   weight_with_unit = f"{int(self.weight)} {self.select_part.value['unit']}"
 
-        if check == 1 and check != self.last_check:
-          self.play_tone("OK")
-          # self.check_label.config(foreground='green')
-          # self.check_label.config(text="QTY GOOD")
+      if check == 1 and check != self.last_check:
+        self.play_tone("OK")
+        # self.check_label.config(foreground='green')
+        # self.check_label.config(text="QTY GOOD")
 
-          self.log_data(self.select_part.value, float(format(self.weight, '.2f')) if self.select_part.value['unit'] == 'kg' else int(self.weight), "OK")
-          count, self.count_ok, self.count_ng = self.count_log_data(self.select_part.value['name'])
-          
-          if (self.select_part.value['pack'] > 0):
-            self.count_pack = self.sum_qty_by_part(self.select_part.value['name'])
-            self.count_ok_session = (self.count_ok - self.count_pack) % self.select_part.value['pack']
-            if self.count_ok_session == 0:
-              result_queue = queue.Queue()
-              self.count_try = 0
-              threading.Thread(target=self.run_print_label, args=(self.select_part.value, self.select_part.value['pack'], result_queue)).start()
-              await asyncio.sleep(0.1)
-              await self.print_dialog(result_queue)
-              # GlobalConfig.print_label(part, self.count_ok_setpoint.get())
-          else:
-            self.count_ok_session = self.count_ok
-          
-          self.label_count_pack.set_text(f'[{self.count_ok_session} / {self.select_part.value["pack"]}] {self.count_pack} PACK')
-          self.label_count_ok.set_text(f'{self.count_ok} OK')
-          # self.label_count_ng.set_text(f'{self.count_ng} NG')
+        self.log_data(self.select_part.value, float(format(self.weight, '.2f')) if self.select_part.value['unit'] == 'kg' else int(self.weight), "OK")
+        count, self.count_ok, self.count_ng = self.count_log_data(self.select_part.value['name'])
+        
+        if (self.select_part.value['pack'] > 0):
+          self.count_pack = self.sum_qty_by_part(self.select_part.value['name'])
+          self.count_ok_session = (self.count_ok - self.count_pack) % self.select_part.value['pack']
+          if self.count_ok_session == 0:
+            result_queue = queue.Queue()
+            self.count_try = 0
+            threading.Thread(target=self.run_print_label, args=(self.select_part.value, self.select_part.value['pack'], result_queue)).start()
+            await asyncio.sleep(0.1)
+            await self.print_dialog(result_queue)
+            # GlobalConfig.print_label(part, self.count_ok_setpoint.get())
+        else:
+          self.count_ok_session = self.count_ok
+        
+        self.label_count_pack.set_text(f'[{self.count_ok_session} / {self.select_part.value["pack"]}] {self.count_pack} PACK')
+        self.label_count_ok.set_text(f'{self.count_ok} OK')
+        # self.label_count_ng.set_text(f'{self.count_ng} NG')
 
       elif check == 2 and check != self.last_check:
         self.play_tone("NG")
@@ -181,7 +181,7 @@ class scale:
       self.label_weight.set_text(f"{float(format(self.weight, '.2f')) if self.select_part.value['unit'] == 'kg' else int(self.weight)} {self.select_part.value['unit']}")
     
     await asyncio.sleep(0.05)
-    print('updating')
+    # print('updating')
     await self.update_scale()
 
   def log_data(self, part, scale, status):
@@ -245,10 +245,10 @@ class scale:
     print_job_file_path = os.path.join('logs', f'logs/print-job-{current_date}.json')
 
     if not os.path.isfile(print_job_file_path):
-      ui.notify(
-        f'Path {print_job_file_path} does not exist.',
-        type='negative'
-      )
+      # ui.notify(
+      #   f'Path {print_job_file_path} does not exist.',
+      #   type='negative'
+      # ) 
       return 0
 
     # Initialize a variable to store the sum of quantities for the selected part
@@ -360,7 +360,7 @@ class scale:
     if (unit == "kg"):
       wt = wt / 1000.0
 
-    if (self.check_stable_state(wt, unit, std)):
+    if (await self.check_stable_state(wt, std, unit)):
       if (unit == "kg" and wt <= 0.01):
         self.check_status = 0
         self.stable_weight = 0.0
@@ -385,9 +385,9 @@ class scale:
     diff = 0.0
 
     if (unit == "kg"):
-      diff = std * 0.1
+      diff = float(std) * 0.1
     else:
-      diff = 1.0 if (std == 0) else std * 0.1
+      diff = 1.0 if (std == 0) else float(std) * 0.1
 
     if (wt >= wt - diff and wt <= wt + diff and abs(wt - self.last_weight) <= diff):
       self.stable_readings_count = self.stable_readings_count + 1 if (self.last_weight > diff) else 0
