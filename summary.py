@@ -119,35 +119,37 @@ class summary:
       data = json.load(log_file)
       grouped_data = {}
       for entry in data:
-        part = entry['part']
-        std = entry['std']
-        unit = entry['unit']
-        hysteresis = entry['hysteresis']
+        # Create a unique key using part, standard, and hysteresis
+        key = (entry['part'], entry['std'], entry['hysteresis'])
         status = entry['status']
 
-        if part not in grouped_data:
-          grouped_data[part] = {
-            'standard': std,
-            'unit': unit,
-            'tolerance': hysteresis,
+        # Initialize the group if it doesn't exist
+        if key not in grouped_data:
+          grouped_data[key] = {
+            'part': entry['part'],
+            'standard': entry['std'],
+            'unit': entry['unit'],
+            'tolerance': entry['hysteresis'],
             'ok': 0,
             'ng': 0
           }
+        
+        # Increment the appropriate counter
+        if status == "OK":
+          grouped_data[key]['ok'] += 1
+        else:
+          grouped_data[key]['ng'] += 1
 
-          if status == "OK":
-            grouped_data[part]['ok'] += 1
-          else:
-            grouped_data[part]['ng'] += 1
-
+      # Convert grouped data to rows
       self.rows = []
-      for part, values in grouped_data.items():
+      for values in grouped_data.values():
         self.rows.append({
-          'part': part,
+          'part': values['part'],
           'standard': values['standard'],
           'tolerance': f"{values['tolerance']:.2f}",
           'unit': values['unit'],
-          'ok' : values['ok'], 
-          'ng' : values['ng'],
+          'ok': values['ok'],
+          'ng': values['ng'],
         })
 
       self.table_log.rows = self.rows
