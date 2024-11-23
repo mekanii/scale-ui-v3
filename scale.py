@@ -127,11 +127,11 @@ class scale:
       if (self.select_part.value is not None):
         if (self.select_part.value['name'] != self.last_part):
           self.last_part = self.select_part.value
-          count, self.count_ok, self.count_ng = self.count_log_data(self.select_part.value['name'])
+          count, self.count_ok, self.count_ng = self.count_log_data(self.select_part.value)
 
           if (self.select_part.value['pack'] > 0):
             self.count_pack = self.sum_qty_by_part(self.select_part.value)
-            self.count_ok_session = (self.count_ok - self.count_pack) % self.select_part.value['pack']
+            self.count_ok_session = self.count_ok % self.select_part.value['pack']
           else:
             self.count_ok_session = self.count_ok
 
@@ -157,11 +157,11 @@ class scale:
           # self.check_label.config(text="QTY GOOD")
 
           self.log_data(self.select_part.value, float(format(self.weight, '.2f')) if self.select_part.value['unit'] == 'kg' else int(self.weight), "OK")
-          count, self.count_ok, self.count_ng = self.count_log_data(self.select_part.value['name'])
+          count, self.count_ok, self.count_ng = self.count_log_data(self.select_part.value)
           
           if (self.select_part.value['pack'] > 0):
             self.count_pack = self.sum_qty_by_part(self.select_part.value)
-            self.count_ok_session = (self.count_ok - self.count_pack) % self.select_part.value['pack']
+            self.count_ok_session = self.count_ok % self.select_part.value['pack']
             if self.count_ok_session == 0:
               result_queue = queue.Queue()
               self.count_try = 0
@@ -184,7 +184,7 @@ class scale:
           # self.check_label.config(text="NOT GOOD")
 
           self.log_data(self.select_part.value, float(format(self.weight, '.2f')) if self.select_part.value['unit'] == 'kg' else int(self.weight), "NG")
-          self.count, self.count_ok, self.count_ng = self.count_log_data(self.select_part.value['name'])
+          self.count, self.count_ok, self.count_ng = self.count_log_data(self.select_part.value)
 
           self.label_count_pack.set_text(f'[{self.count_ok_session} / {self.select_part.value["pack"]}] {self.count_pack} PACK')
           # self.label_count_ok.set_text(f'{self.count_ok} OK')
@@ -230,7 +230,7 @@ class scale:
       file.seek(0)
       json.dump(data, file, indent=4)
   
-  def count_log_data(self, part_name):
+  def count_log_data(self, part):
     # Get the current date in the format yyyy-mm-dd
     current_date = datetime.now().strftime("%Y-%m-%d")
     log_filename = f"logs/log-{current_date}.json"
@@ -247,10 +247,10 @@ class scale:
     # Read the log file and count entries for the specified part
     with open(log_filename, 'r') as file:
       data = json.load(file)
-      count = sum(1 for entry in data if entry['part'] == part_name)
+      count = sum(1 for entry in data if entry['part'] == part['name'] and entry['std'] == part['std'] and entry['hysteresis'] == part['hysteresis'])
 
-      count_ok = sum(1 for entry in data if entry['part'] == part_name and entry['status'] == "OK")
-      count_ng = sum(1 for entry in data if entry['part'] == part_name and entry['status'] == "NG")
+      count_ok = sum(1 for entry in data if entry['part'] == part['name'] and entry['std'] == part['std'] and entry['hysteresis'] == part['hysteresis'] and entry['status'] == "OK")
+      count_ng = sum(1 for entry in data if entry['part'] == part['name'] and entry['std'] == part['std'] and entry['hysteresis'] == part['hysteresis'] and entry['status'] == "NG")
 
     return count, count_ok, count_ng
   
@@ -275,9 +275,9 @@ class scale:
       data = json.load(file)
       for entry in data:
         if entry['part'] == part['name'] and entry['std'] == part['std'] and entry['hysteresis'] == part['hysteresis']:
-          qty = entry.get('qty', 0)
-          total_qty += qty
-          print(total_qty)
+          # qty = entry.get('qty', 0)
+          total_qty += 1
+          # print(total_qty)
 
     return total_qty
   
